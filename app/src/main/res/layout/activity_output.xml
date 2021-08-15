@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/OutputBlack"
+    tools:context=".OutputActivity">
+
+    <ImageView
+        android:id="@+id/displayImageView"
+        android:layout_width="162dp"
+        android:layout_height="245dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:contentDescription="TODO"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_launcher_background"
+        android:layout_marginLeft="16dp"
+        tools:ignore="VectorDrawableCompat" />
+
+    <ImageView
+        android:id="@+id/reconImageView"
+        android:layout_width="161dp"
+        android:layout_height="245dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_launcher_background"
+        android:layout_marginRight="16dp"
+        tools:ignore="VectorDrawableCompat" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="24dp"
+        android:text="Input Image"
+        android:textColor="#FFFFFF"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/displayImageView"
+        android:layout_marginLeft="60dp" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="159dp"
+        android:layout_height="21dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="16dp"
+        android:text="Capsnet Reconstruction"
+        android:textColor="#FFFFFF"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/reconImageView"
+        android:layout_marginRight="16dp" />
+
+    <TextView
+        android:id="@+id/classificationView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="68dp"
+        android:text="[insert class]"
+        android:textColor="#FFFFFF"
+        android:textSize="25dp"
+        app:layout_constraintStart_toEndOf="@+id/classificationLabel"
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        android:layout_marginLeft="10dp" />
+
+    <TextView
+        android:id="@+id/classificationLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="68dp"
+        android:text="Classification:"
+        android:textColor="#FFFFFF"
+        android:textSize="25dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        android:layout_marginLeft="40dp" />
+
+    <TextView
+        android:id="@+id/causesLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="35dp"
+        android:text="Possible Causes:"
+        android:textColor="#FFFFFF"
+        android:textSize="15dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/classificationLabel"
+        android:layout_marginLeft="40dp" />
+
+    <TextView
+        android:id="@+id/treatmentLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="84dp"
+        android:text="Possible Treatment:"
+        android:textColor="#FFFFFF"
+        android:textSize="15dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/causesLabel"
+        android:layout_marginLeft="40dp" />
+
+    <TextView
+        android:id="@+id/causesView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="84dp"
+        android:text="[insert treatments]"
+        android:textColor="#FFFFFF"
+        android:textSize="15dp"
+        app:layout_constraintStart_toEndOf="@+id/treatmentLabel"
+        app:layout_constraintTop_toBottomOf="@+id/treatmentView"
+        android:layout_marginLeft="4dp" />
+
+    <TextView
+        android:id="@+id/treatmentView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="7dp"
+        android:layout_marginTop="35dp"
+        android:text="[insert causes]"
+        android:textColor="#FFFFFF"
+        android:textSize="15dp"
+        app:layout_constraintStart_toEndOf="@+id/causesLabel"
+        app:layout_constraintTop_toBottomOf="@+id/classificationView"
+        android:layout_marginLeft="7dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
