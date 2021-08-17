@@ -72,6 +72,9 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * method that checks for device's camera permission. Needed because the app needs camera permissions to access the camera
+     */
     private void askCameraPermission() {
 
             if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
@@ -85,8 +88,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-
-
+    /**
+     * If camera permission does not exist. this method will be called to ask the user to give camera permissions.
+     * @param requestCode
+     * @param permissions
+     * @param grantResults
+     */
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
@@ -94,15 +101,19 @@ public class MainActivity extends AppCompatActivity {
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 dispatchTakePictureIntent();
             } else {
-                Toast.makeText(this, "Camera Permission is required for this app", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Camera Permission is required to use camera feature", Toast.LENGTH_SHORT).show();
             }
         }
     }
 
 
-
-
-
+    /**
+     * once camera or gallery intent has finished. this method is called.
+     * It places the input image data into an intent, passes it to OutuputActivity then opens OutputActivity.
+     * @param requestCode
+     * @param resultCode
+     * @param data
+     */
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -136,13 +147,22 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * A method that returns a file extension of a file given its URI
+     * @param imageUri
+     * @return
+     */
     private String getFileExt(Uri imageUri) {
         ContentResolver c = getContentResolver();
         MimeTypeMap mime = MimeTypeMap.getSingleton();
         return mime.getExtensionFromMimeType(c.getType(imageUri));
     }
 
-
+    /**
+     * method used by dispatchTakePictureIntent() to create an image file.
+     * @return
+     * @throws IOException
+     */
     private File createImageFile() throws IOException {
 
         String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date()); //create time stamp to create filename
@@ -162,6 +182,9 @@ public class MainActivity extends AppCompatActivity {
         return image;
     }
 
+    /**
+     * method that opens camera intent, creates a result, and creates an image file.
+     */
     private void dispatchTakePictureIntent() {
         Log.d("TAG", "dispatchTakePictureIntent()");
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);

@@ -25,10 +25,10 @@ import java.io.IOException;
 
 public class OutputActivity extends AppCompatActivity {
 
-    ImageView selectedImage;
-    ImageView processedImage;
-    TextView textview;
-    String imgString64;
+    ImageView selectedImage;/** image view where the user's input image will be displayed **/
+    ImageView processedImage;/** image view where the reconstructed input image will be displayed **/
+    String imgString64;/** base 64 string that contains data of user's selected image. this will be passed to python. **/
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,20 +36,21 @@ public class OutputActivity extends AppCompatActivity {
         setContentView(R.layout.activity_output);
         selectedImage = findViewById(R.id.displayImageView);
         processedImage = findViewById(R.id.reconImageView);
-        JavaToPython j2p = new JavaToPython();
 
-        Uri image = Uri.parse(getIntent().getStringExtra("image"));
-        selectedImage.setImageURI(image);
-        textview = (TextView)findViewById(R.id.textView);
+
+        Uri image = Uri.parse(getIntent().getStringExtra("image"));/** get the user's input image from Intent and get its URI **/
+        selectedImage.setImageURI(image);/** display selected image on 'selectedImage' image view**/
+
 
         try {
-            Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), image);
-            imgString64= getStringImage(bitmap);
+            Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), image);/** Set URI to Bitmap **/
+            imgString64= getStringImage(bitmap);/** encode bitmap to base64 string **/
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        Log.d("TEST",imgString64);
+
+        //Log.d("TEST",imgString64);
 
         /*try {
             File file = new File("file.txt");
@@ -65,27 +66,32 @@ public class OutputActivity extends AppCompatActivity {
         */
 
 
-
-
-        /*
+        /**Python APi**/
         if(!Python.isStarted()) {
             Python.start(new AndroidPlatform(this));
         }
 
 
         Python py = Python.getInstance();
-        PyObject pyobj = py.getModule("Aloe-Detection_v2");
+        PyObject pyobj = py.getModule("Aloe-Detection_v2"); /**get python file**/
 
-        PyObject obj = pyobj.callAttr("preprocessor",imgString64);
+        PyObject obj = pyobj.callAttr("preprocessor",imgString64); /**get function from python file and set parameter as imgString64, return will be stored in obj **/
+
+        /**the return value of the python method called previously will be a base 64 string. this converts the string back to an image. **/
         String str = obj.toString();
         byte data[] = android.util.Base64.decode(str,Base64.DEFAULT);
         Bitmap bmp = BitmapFactory.decodeByteArray(data, 0, data.length);
         processedImage.setImageBitmap(bmp);
 
-         */
+
     }
 
 
+    /**
+     * a function that encodes bitmaps to base64 string.
+     * @param bitmap bitmap
+     * @return encoded image into base 64 string
+     */
     private String getStringImage (Bitmap bitmap){
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         bitmap.compress(Bitmap.CompressFormat.PNG, 100, baos);
