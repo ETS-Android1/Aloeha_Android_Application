@@ -35,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
     public static final int CAMERA_PERM_CODE = 101;
     public static final int CAMERA_REQUEST_CODE = 102;
     public static final int GALLERY_REQUEST_CODE = 105;
+    public static final String INTENT_TAG_IMAGE= "image";
     private final int REQUEST_CAMERA_USAGE = 200;
     ImageButton cameraBtn, galleryBtn;
     String currentPhotoPath;
@@ -62,12 +63,11 @@ public class MainActivity extends AppCompatActivity {
         galleryBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent gallery = new Intent(Intent.ACTION_PICK,MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                startActivityForResult(gallery,GALLERY_REQUEST_CODE);
+                Intent gallery = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                startActivityForResult(gallery, GALLERY_REQUEST_CODE);
 
             }
         });
-
 
 
     }
@@ -125,7 +125,7 @@ public class MainActivity extends AppCompatActivity {
                 File file = new File(currentPhotoPath);
                 imageUri = Uri.fromFile(file);
 
-                intent.putExtra("image", imageUri.toString());
+                intent.putExtra(INTENT_TAG_IMAGE, imageUri.toString());
                 startActivity(intent);
             }
 

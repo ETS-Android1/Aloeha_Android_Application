@@ -22,13 +22,14 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.net.URI;
 
 public class OutputActivity extends AppCompatActivity {
 
     ImageView selectedImage;/** image view where the user's input image will be displayed **/
     ImageView processedImage;/** image view where the reconstructed input image will be displayed **/
     String imgString64;/** base 64 string that contains data of user's selected image. this will be passed to python. **/
-
+    public static final String INTENT_TAG_IMAGE= "image";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,8 +38,8 @@ public class OutputActivity extends AppCompatActivity {
         selectedImage = findViewById(R.id.displayImageView);
         processedImage = findViewById(R.id.reconImageView);
 
+        Uri image = getImageFromIntent(INTENT_TAG_IMAGE);
 
-        Uri image = Uri.parse(getIntent().getStringExtra("image"));/** get the user's input image from Intent and get its URI **/
         selectedImage.setImageURI(image);/** display selected image on 'selectedImage' image view**/
 
 
@@ -83,6 +84,11 @@ public class OutputActivity extends AppCompatActivity {
         Bitmap bmp = BitmapFactory.decodeByteArray(data, 0, data.length);
         processedImage.setImageBitmap(bmp);
 
+
+    }
+
+    private Uri getImageFromIntent(String name){
+        return Uri.parse(getIntent().getStringExtra("image"));
 
     }
 
