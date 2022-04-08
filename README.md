@@ -4,7 +4,7 @@ UI manager and Android Layer of Aloeha.
 Aloeha is a thesis project conducted by me and my groupmates. It uses a novel computer vision algorithm called Capsule Neural Networks to 
 identify leaf rot and rust in Aloe Vera plants. This Repo contains the final product of our thesis: An android app that uses capsnet to identify Aloe Vera leaf rot and rust. The app is **93% accurate** 
 
-The Capsule Neural Network model used in this app is discussed in detail [here.](https://github.com/Jedflo/Aloeha_capsule_neural_networks)
+The Capsule Neural Network model used in this app is discussed in more detail [here.](https://github.com/Jedflo/Aloeha_capsule_neural_networks)
 
 # Functional Requirements
 - [x] able to use the phone's camera as an input method
