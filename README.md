@@ -46,6 +46,8 @@ If the user wants to input via gallery, the main activity will start a new galle
 The third and final step is the same for both input methods, it is the output activity. The output activity displays the input image of the user, the reconstruction of the input image by capsnet, the input image's classification, and if it is classified as rot or rust; its possible causes and treatments. 
 
 # Aloeha App Architecture and Code
+![image](https://user-images.githubusercontent.com/82581503/162374223-171248cb-2d36-41a3-80a9-e448e2b32c62.png)
+
 
 
 
