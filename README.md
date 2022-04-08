@@ -45,10 +45,43 @@ If the user wants to input via gallery, the main activity will start a new galle
 
 The third and final step is the same for both input methods, it is the output activity. The output activity displays the input image of the user, the reconstruction of the input image by capsnet, the input image's classification, and if it is classified as rot or rust; its possible causes and treatments. 
 
-# Aloeha App Architecture and Code
+# Aloeha App Architecture
+
 ![image](https://user-images.githubusercontent.com/82581503/162374223-171248cb-2d36-41a3-80a9-e448e2b32c62.png)
 
+Shown above is a rough diagram of the application's architecture. 
 
+# Aloeha App Code
+## Java
+### Splash Activity
+Serves as the splash screen of the app. If the app is opened, it will display the splash screen (shown below) for 3 seconds.
+![image](https://user-images.githubusercontent.com/82581503/162375593-bff291e8-d2c6-40ca-99c2-35f9727b95a0.png)
+
+### Main Activity
+This is where the user can choose a method of input. This file contains the code to ask android to give the app permission to access camera and storage, and the logic to trigger the camera or gallery intent. 
+
+### Output Activity
+This file is responsible for collecting the input image from the main activity, starting the python interpreter, passing the input image to the python interpreter, getting the output of the python interpreter (or capsnet manager.), and displaying the results to the user. 
+
+## Python
+### trained_model.h5
+Contains the weights of the capsnet model. Produced during training (training details can be seen [here](https://github.com/Jedflo/Aloeha_capsule_neural_networks))
+
+### Capsnet_Model.py
+Contains the capsnet model as described [here](https://github.com/Jedflo/Aloeha_capsule_neural_networks). 
+
+### Capsnet_Manager.py
+This contains a function that loads the weights and input image to the capsnet model. Basically, this contains the capsnet classifier function of the system.
+
+
+### preprocessor.py
+This file contains useful image preprocessing functions, specifically a crop function made by [Mathew Mojado](https://github.com/MachuMachu)
+
+### Preprocessing_Manager.py
+This file contains a function that crops (from preprocessor.py) and resizes images to 32x32 pixels then changes their color mode to HSV. 
+
+### Capsnet_main.py
+This file contains a function that connects the Preprocesssing Manager to the Capsnet Manager. When the java application starts the python interpreter, the *Capsnet* function within this file is executed. The said function takes in an image as an arguement and returns two strings; the classification of the input image, and the reconstruction of the input image converted to string64 format.
 
 
 
