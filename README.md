@@ -85,6 +85,8 @@ This file contains a function that crops (from preprocessor.py) and resizes imag
 This file contains a function that connects the Preprocesssing Manager to the Capsnet Manager. When the java application starts the python interpreter, the *Capsnet* function within this file is executed. The said function takes in an image as an arguement and returns two strings; the classification of the input image, and the reconstruction of the input image converted to string64 format.
 
 
+# Capsule Neural Networks for the Aloe Vera Affliction Dataset
+To see the developmental details of the Capsule Neural Network used within this app click [here](https://github.com/Jedflo/Aloeha_capsule_neural_networks)
 
 
 
